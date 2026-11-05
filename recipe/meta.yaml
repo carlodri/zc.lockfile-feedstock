@@ -1,13 +1,13 @@
 {% set name = "zc.lockfile" %}
-{% set version = "4.0" %}
+{% set version = "4.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/zc_lockfile-{{ version }}.tar.gz
-  sha256: d3ab0f53974296a806db3219b9191ba0e6d5cbbd1daa2e0d17208cb9b29d2102
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/zc_lockfile-{{ version }}.tar.gz
+  sha256: 498f37d33a36d1b1534ea31a0fbe3b5d371c862baeb8805f467a6d39948011ef
 
 build:
   preserve_egg_dir: true
