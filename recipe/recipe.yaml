@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: zc.lockfile
+  version: "4.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/zc_lockfile-${{ version }}.tar.gz
+  sha256: 498f37d33a36d1b1534ea31a0fbe3b5d371c862baeb8805f467a6d39948011ef
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=78.1.1
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - zc.lockfile
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - zope.testing
+    script:
+      - python -c "import sys, unittest, zc.lockfile.tests as t; r = unittest.TextTestRunner(verbosity=2).run(t.test_suite()); sys.exit(not r.wasSuccessful())"
+
+about:
+  homepage: https://github.com/zopefoundation/zc.lockfile
+  repository: https://github.com/zopefoundation/zc.lockfile
+  license: ZPL-2.1
+  license_file: LICENSE.txt
+  summary: Basic inter-process locks
+  description: |
+    The zc.lockfile package provides a basic portable implementation of
+    interprocess locks using lock files.
+
+extra:
+  recipe-maintainers:
+    - carlodri
