@@ -11,6 +11,9 @@ Summary: Basic inter-process locks
 
 Development: https://github.com/zopefoundation/zc.lockfile
 
+The zc.lockfile package provides a basic portable implementation of
+interprocess locks using lock files.
+
 Current build status
 ====================
 
